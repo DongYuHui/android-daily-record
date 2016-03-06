@@ -1,0 +1,2 @@
+# android_daily_record
+记录日常工作与学习中的有用控件及一些常用的封装，比如各个项目中都可能用到的固定布局，对基础的 Activiy Fragment 的封装等
