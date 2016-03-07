@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Base Dimen-->
+    <dimen name="base_dimen_1dp">1dp</dimen>
+    <dimen name="base_dimen_2dp">2dp</dimen>
+    <dimen name="base_dimen_3dp">3dp</dimen>
+    <dimen name="base_dimen_4dp">4dp</dimen>
+    <dimen name="base_dimen_8dp">8dp</dimen>
+    <dimen name="base_dimen_16dp">16dp</dimen>
+    <dimen name="base_dimen_24dp">24dp</dimen>
+    <dimen name="base_dimen_32dp">32dp</dimen>
+    <dimen name="base_dimen_40dp">40dp</dimen>
+
+    <!--Base Text-->
+    <dimen name="base_text_8sp">8sp</dimen>
+    <dimen name="base_text_14sp">14sp</dimen>
+    <dimen name="base_text_16sp">16sp</dimen>
+    <dimen name="base_text_18sp">18sp</dimen>
+    <dimen name="base_text_20sp">20sp</dimen>
+    <dimen name="base_text_24sp">24sp</dimen>
+    <dimen name="base_text_32sp">32sp</dimen>
+
+</resources>
