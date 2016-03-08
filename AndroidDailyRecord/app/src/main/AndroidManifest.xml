@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.kyletung.androiddailyrecord">
+    package="com.kyletung.androiddailyrecord">
 
     <application
         android:allowBackup="true"
@@ -11,10 +11,13 @@
         <!--Main-->
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--Module-->
+        <activity android:name=".module.viewgroup.rectlayout.RectLayoutActivity" />
 
     </application>
 

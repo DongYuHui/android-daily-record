@@ -11,4 +11,7 @@
     <color name="base_color_white">#FFFFFF</color>
     <color name="base_color_grey">#DDDDDD</color>
 
+    <!--RectLayout-->
+    <color name="rect_item_background">#68CCB6</color>
+
 </resources>
