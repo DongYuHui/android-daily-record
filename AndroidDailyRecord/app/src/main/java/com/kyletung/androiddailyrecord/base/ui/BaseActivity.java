@@ -3,6 +3,11 @@ package com.kyletung.androiddailyrecord.base.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+
+import com.kyletung.androiddailyrecord.R;
 
 /**
  * All rights reserved by Author<br>
@@ -14,6 +19,8 @@ import android.support.v7.app.AppCompatActivity;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
+    private Toolbar mToolbar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +30,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 用于获取 Activity 的布局 Resource
+     *
      * @return 返回布局 Resource
      */
     protected abstract int getContentLayout();
@@ -31,5 +39,26 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 用于子类初始化视图
      */
     protected abstract void initView();
+
+    /**
+     * 初始化 Toolbar
+     *
+     * @param title   Toolbar Title
+     * @param hasBack 是否有返回按钮
+     */
+    protected void initToolbar(String title, boolean hasBack) {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle(title);
+        setSupportActionBar(mToolbar);
+        if (hasBack && getSupportActionBar() != null) {
+            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+            mToolbar.setNavigationIcon(R.drawable.default_arrow_left);
+        }
+    }
 
 }

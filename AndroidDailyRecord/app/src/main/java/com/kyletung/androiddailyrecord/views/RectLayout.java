@@ -1,4 +1,4 @@
-package com.kyletung.androiddailyrecord.view;
+package com.kyletung.androiddailyrecord.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -28,6 +28,8 @@ public class RectLayoutActivity extends BaseActivity {
     @Override
     protected void initView() {
 
+        initToolbar("RectLayout", true);
+
         // Vertical RecyclerView
         RecyclerView recyclerVertical = (RecyclerView) findViewById(R.id.recycler_vertical);
         final RectAdapter adapterVertical = new RectAdapter(this, R.layout.rect_layout_recycler_item_vertical);
