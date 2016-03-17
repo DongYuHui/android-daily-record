@@ -3,4 +3,7 @@
     <!--App-->
     <string name="app_name">Daily Record</string>
 
+    <!-- Module -->
+    <string name="more_scroll_desc">1. 在 support 库升级到 23.2.0 之后，RecyclerView 设置高度为 wrap_content 已经能够自适应高度了。\n2. 在 Lollipop 及以上，ScrollView 嵌套 RecyclerView 会发生滑动失去惯性的情况，需要重写事件拦截来重新获取该特性。</string>
+
 </resources>

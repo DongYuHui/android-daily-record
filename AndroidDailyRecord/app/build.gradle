@@ -28,4 +28,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.2.0'
     // card view
     compile 'com.android.support:cardview-v7:23.2.0'
+    // material design
+    compile 'com.android.support:design:23.2.0'
 }

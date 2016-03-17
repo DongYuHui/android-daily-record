@@ -11,6 +11,7 @@ import com.kyletung.androiddailyrecord.main.adapter.MainAdapter;
 import com.kyletung.androiddailyrecord.main.model.MainModel;
 import com.kyletung.androiddailyrecord.module.view.ViewsActivity;
 import com.kyletung.androiddailyrecord.module.viewgroup.rectlayout.RectLayoutActivity;
+import com.kyletung.androiddailyrecord.module.viewgroup.recyclerview.RecyclerActivity;
 
 import java.util.ArrayList;
 
@@ -24,7 +25,7 @@ import java.util.ArrayList;
  */
 public class MainActivity extends BaseActivity implements MainAdapter.OnItemClickListener {
 
-    private static final String[] items = {"RectLayout", "Views(常见)"};
+    private static final String[] items = {"RectLayout", "Views(常见)", "RecyclerView高度自适应/ScrollView滑动惯性"};
 
     @Override
     protected int getContentLayout() {
@@ -58,6 +59,11 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnItemClic
             case 1:
                 Intent intentViews = new Intent(this, ViewsActivity.class);
                 startActivity(intentViews);
+                break;
+            case 2:
+                Intent intentMoreScroll = new Intent(this, RecyclerActivity.class);
+                startActivity(intentMoreScroll);
+                break;
         }
     }
 
