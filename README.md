@@ -4,6 +4,22 @@
 
 目前添加进的内容有如下：
 
+### 工具类 ###
+
+1. DiaplayUtil：用于屏幕单位之间的转化（dp、px、sp）
+
 ### 矩形布局 ###
 
 能够按固定比例显示的矩形布局，可以自定义宽高的比例，可以指明是宽度跟随高度还是高度跟随宽度。
+
+### 圆形 ImageView ###
+
+继承 ImageView 实现圆形图片，可以自定义边框宽度和颜色。
+
+### RecyclerView ###
+
+通过 ItemType 实现能够加载更多的 RecyclerView，并解决 ScrollView 嵌套 RecyclerView 在 Lollipop 以上失去滑动惯性的问题。
+
+### UCrop 裁剪库 ###
+
+UCrop 是一个非常强大的裁剪库，这里集成了它的 Demo，可配置性非常强，使用体验也十分出众。

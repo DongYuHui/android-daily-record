@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kyletung.androiddailyrecord.R;
-import com.kyletung.androiddailyrecord.base.recycler.BaseRecyclerAdapter;
+import com.kyletung.androiddailyrecord.views.recycler.BaseRecyclerAdapter;
 import com.kyletung.androiddailyrecord.main.model.MainModel;
 
 /**
