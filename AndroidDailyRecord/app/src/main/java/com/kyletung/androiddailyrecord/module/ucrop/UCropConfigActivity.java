@@ -46,9 +46,14 @@ public class UCropConfigActivity extends BaseActivity {
 
     private Uri mDestinationUri;
 
+    /**
+     * 是否是第一次进入该页面，是则显示介绍的 Dialog
+     */
+    private boolean mIsFirst = true;
+
     @Override
     protected int getContentLayout() {
-        return R.layout.activity_sample;
+        return R.layout.ucrop_activity_sample;
     }
 
     @Override
@@ -56,13 +61,20 @@ public class UCropConfigActivity extends BaseActivity {
         initToolbar("UCrop", true);
         mDestinationUri = Uri.fromFile(new File(getCacheDir(), SAMPLE_CROPPED_IMAGE_NAME));
         setupUI();
+    }
 
-        // 介绍 UCrop
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("UCrop");
-        builder.setMessage(getString(R.string.ucrop_introduce));
-        builder.setPositiveButton("OK", null);
-        builder.show();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mIsFirst) {
+            // 介绍 UCrop
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("UCrop");
+            builder.setMessage(getString(R.string.ucrop_introduce));
+            builder.setPositiveButton("OK", null);
+            builder.show();
+            mIsFirst = false;
+        }
     }
 
     @Override

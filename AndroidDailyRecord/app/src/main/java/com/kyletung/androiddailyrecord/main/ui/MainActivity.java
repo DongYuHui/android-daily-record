@@ -9,6 +9,7 @@ import com.kyletung.androiddailyrecord.R;
 import com.kyletung.androiddailyrecord.base.ui.BaseActivity;
 import com.kyletung.androiddailyrecord.main.adapter.MainAdapter;
 import com.kyletung.androiddailyrecord.main.model.MainModel;
+import com.kyletung.androiddailyrecord.module.nineimageview.NineImageActivity;
 import com.kyletung.androiddailyrecord.module.ucrop.UCropConfigActivity;
 import com.kyletung.androiddailyrecord.module.views.ViewsActivity;
 import com.kyletung.androiddailyrecord.module.rectlayout.RectLayoutActivity;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
  */
 public class MainActivity extends BaseActivity implements MainAdapter.OnItemClickListener {
 
-    private static final String[] items = {"RectLayout", "Views(常见)", "RecyclerView高度自适应/ScrollView滑动惯性", "UCrop 裁剪库"};
+    private static final String[] items = {"RectLayout 矩形布局", "常见 Views", "RecyclerView 高度自适应 / ScrollView 滑动惯性", "UCrop 裁剪库", "九宫格图片布局"};
 
     @Override
     protected int getContentLayout() {
@@ -68,6 +69,10 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnItemClic
             case 3:
                 Intent intentUCrop = new Intent(this, UCropConfigActivity.class);
                 startActivity(intentUCrop);
+                break;
+            case 4:
+                Intent intentNineImage = new Intent(this, NineImageActivity.class);
+                startActivity(intentNineImage);
                 break;
         }
     }

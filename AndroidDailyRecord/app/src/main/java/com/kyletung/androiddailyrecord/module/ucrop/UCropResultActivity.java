@@ -45,7 +45,7 @@ public class UCropResultActivity extends BaseActivity {
 
     @Override
     protected int getContentLayout() {
-        return R.layout.activity_result;
+        return R.layout.ucrop_activity_result;
     }
 
     @Override

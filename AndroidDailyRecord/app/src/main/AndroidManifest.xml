@@ -2,6 +2,9 @@
     package="com.kyletung.androiddailyrecord"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Normal Permissions -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <!-- Dangerous Permissions That Should Request -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -27,6 +30,7 @@
         <activity android:name=".module.recyclerview.RecyclerActivity"/>
         <activity android:name=".module.ucrop.UCropConfigActivity"/>
         <activity android:name=".module.ucrop.UCropResultActivity"/>
+        <activity android:name=".module.nineimageview.NineImageActivity"/>
 
         <!-- UCrop -->
         <activity android:name="com.kyletung.ucrop.UCropActivity"/>
