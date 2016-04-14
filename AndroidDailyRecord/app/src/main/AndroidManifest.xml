@@ -31,6 +31,7 @@
         <activity android:name=".module.ucrop.UCropConfigActivity"/>
         <activity android:name=".module.ucrop.UCropResultActivity"/>
         <activity android:name=".module.nineimageview.NineImageActivity"/>
+        <activity android:name=".module.multiphotopicker.PhotoPickerActivity"/>
 
         <!-- UCrop -->
         <activity android:name="com.kyletung.ucrop.UCropActivity"/>

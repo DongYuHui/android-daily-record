@@ -11,52 +11,57 @@ public class BaseLog {
 
     /**
      * Custom Log Verbose
-     * @param tag    tag
-     * @param msg    msg
+     *
+     * @param tag tag
+     * @param msg msg
      */
     public static void v(@Nullable String tag, String msg) {
-        if (tag == null) tag = "YanZe.ClassCircle.Verbose";
-        Log.d(tag, msg);
+        if (tag == null) tag = "AndroidDailyRecord.Verbose";
+        Log.v(tag, msg);
     }
 
     /**
      * Custom Log Debug
-     * @param tag    tag
-     * @param msg    msg
+     *
+     * @param tag tag
+     * @param msg msg
      */
     public static void d(@Nullable String tag, String msg) {
-        if (tag == null) tag = "YanZe.ClassCircle.Debug";
+        if (tag == null) tag = "AndroidDailyRecord.Debug";
         Log.d(tag, msg);
     }
 
     /**
      * Custom Log Info
-     * @param tag    tag
-     * @param msg    msg
+     *
+     * @param tag tag
+     * @param msg msg
      */
     public static void i(@Nullable String tag, String msg) {
-        if (tag == null) tag = "YanZe.ClassCircle.Info";
-        Log.d(tag, msg);
+        if (tag == null) tag = "AndroidDailyRecord.Info";
+        Log.i(tag, msg);
     }
 
     /**
      * Custom Log Warn
-     * @param tag    tag
-     * @param msg    msg
+     *
+     * @param tag tag
+     * @param msg msg
      */
     public static void w(@Nullable String tag, String msg) {
-        if (tag == null) tag = "YanZe.ClassCircle.Warn";
-        Log.d(tag, msg);
+        if (tag == null) tag = "AndroidDailyRecord.Warn";
+        Log.w(tag, msg);
     }
 
     /**
      * Custom Log Error
-     * @param tag    tag
-     * @param msg    msg
+     *
+     * @param tag tag
+     * @param msg msg
      */
     public static void e(@Nullable String tag, String msg) {
-        if (tag == null) tag = "YanZe.ClassCircle.Error";
-        Log.d(tag, msg);
+        if (tag == null) tag = "AndroidDailyRecord.Error";
+        Log.e(tag, msg);
     }
 
 }
