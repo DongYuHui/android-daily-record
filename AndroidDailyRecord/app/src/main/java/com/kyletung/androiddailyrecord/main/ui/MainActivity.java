@@ -9,6 +9,7 @@ import com.kyletung.androiddailyrecord.R;
 import com.kyletung.androiddailyrecord.base.ui.BaseActivity;
 import com.kyletung.androiddailyrecord.main.adapter.MainAdapter;
 import com.kyletung.androiddailyrecord.main.model.MainModel;
+import com.kyletung.androiddailyrecord.module.multiphotopicker.PhotoPickerActivity;
 import com.kyletung.androiddailyrecord.module.nineimageview.NineImageActivity;
 import com.kyletung.androiddailyrecord.module.ucrop.UCropConfigActivity;
 import com.kyletung.androiddailyrecord.module.views.ViewsActivity;
@@ -86,6 +87,9 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnItemClic
                 break;
             case 5:
                 BaseLog.d(TAG, "Multi Photo Picker Activity");
+                Intent intentPhotoPicker = new Intent(this, PhotoPickerActivity.class);
+                intentPhotoPicker.putExtra(PhotoPickerActivity.MAX_COUNT, 6);
+                startActivity(intentPhotoPicker);
                 break;
         }
     }

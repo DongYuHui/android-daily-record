@@ -6,6 +6,9 @@
     <!-- Module -->
     <string name="more_scroll_desc">1. 在 support 库升级到 23.2.0 之后，RecyclerView 设置高度为 wrap_content 已经能够自适应高度了。\n2. 在 Lollipop 及以上，ScrollView 嵌套 RecyclerView 会发生滑动失去惯性的情况，需要重写事件拦截来重新获取该特性。</string>
 
+    <string name="multi_photo_picker_confirm">确定</string>
+    <string name="multi_photo_picker_confirm_count">确定(%1$d/%2$d)</string>
+
     <!-- UCrop -->
     <string name="ucrop_introduce">UCrop 是一个非常强大的图片裁剪库，可配置性强，体验出众。感谢 UCrop 团队能带来如此杰出的工具，在这里向他们表示十二分的敬意。这里只集成了其 Demo 的功能，详细情况可查阅：https://github.com/Yalantis/uCrop</string>
 

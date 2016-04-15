@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#21282C"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:src="@drawable/default_arrow_left"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/button_back"
+        android:layout_toRightOf="@id/button_back"
+        android:text="图片"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/photo_commit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/base_dimen_16dp"
+        android:layout_marginRight="@dimen/base_dimen_16dp"
+        android:background="@drawable/multi_photo_picker_button"
+        android:enabled="false"
+        android:minHeight="1dp"
+        android:minWidth="1dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:text="@string/multi_photo_picker_confirm"
+        android:textColor="@color/multi_photo_picker_folder_name_color"
+        android:textSize="14sp"/>
+
+</RelativeLayout>

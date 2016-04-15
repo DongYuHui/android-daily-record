@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/folder_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:padding="@dimen/base_dimen_4dp">
+
+    <com.kyletung.androiddailyrecord.views.RectLayout
+        android:id="@+id/image_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:scaleHeight="1"
+        app:scaleOrientation="horizontal"
+        app:scaleWidth="1">
+
+        <ImageView
+            android:id="@+id/folder_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+
+    </com.kyletung.androiddailyrecord.views.RectLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/base_dimen_8dp"
+        android:layout_marginRight="@dimen/base_dimen_8dp"
+        android:layout_toEndOf="@id/image_container"
+        android:layout_toRightOf="@id/image_container"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/folder_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/base_color_black"
+            android:textSize="@dimen/base_text_18sp"/>
+
+        <TextView
+            android:id="@+id/folder_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/base_dimen_8dp"
+            android:textColor="@android:color/darker_gray"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/folder_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:paddingBottom="@dimen/base_dimen_32dp"
+        android:paddingTop="@dimen/base_dimen_32dp"
+        android:src="@drawable/multi_photo_picker_folder_choose"
+        android:visibility="gone"/>
+
+</RelativeLayout>

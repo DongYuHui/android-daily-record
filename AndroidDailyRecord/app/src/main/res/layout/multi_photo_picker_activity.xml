@@ -4,6 +4,69 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
+    <include
+        layout="@layout/multi_photo_picker_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/photo_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </android.support.v7.widget.RecyclerView>
+
+            <ViewStub
+                android:id="@+id/folder_stub"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout="@layout/multi_photo_picker_folder_list"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottom_tab_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="#BB000000">
+
+            <TextView
+                android:id="@+id/current_folder_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableEnd="@drawable/multi_photo_folder_indicator"
+                android:drawableRight="@drawable/multi_photo_folder_indicator"
+                android:gravity="center"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="全部图片"
+                android:textColor="@color/multi_photo_picker_folder_name_color"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/current_folder_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/base_dimen_16dp"
+                android:layout_marginRight="@dimen/base_dimen_16dp"
+                android:text="1024张"
+                android:textColor="#A9ffffff"
+                android:textSize="16sp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

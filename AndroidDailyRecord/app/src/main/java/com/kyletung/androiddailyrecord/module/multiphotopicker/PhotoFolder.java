@@ -25,7 +25,7 @@ public class PhotoFolder {
     /**
      * 文件夹中图片的集合
      */
-    private ArrayList<String> mPhotoList;
+    private ArrayList<PhotoModel> mPhotoList;
 
     public PhotoFolder() {
         // 初始化
@@ -50,11 +50,11 @@ public class PhotoFolder {
         mFolderPath = folderPath;
     }
 
-    public ArrayList<String> getPhotoList() {
+    public ArrayList<PhotoModel> getPhotoList() {
         return mPhotoList;
     }
 
-    public void setPhotoList(ArrayList<String> photoList) {
+    public void setPhotoList(ArrayList<PhotoModel> photoList) {
         mPhotoList = photoList;
     }
 

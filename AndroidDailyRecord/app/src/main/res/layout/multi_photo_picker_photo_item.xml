@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kyletung.androiddailyrecord.views.RectLayout
+    android:id="@+id/photo_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:scaleHeight="1"
+    app:scaleOrientation="vertical"
+    app:scaleWidth="1">
+
+    <ImageView
+        android:id="@+id/photo_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <View
+        android:id="@+id/photo_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/photo_indicator"
+        android:layout_width="@dimen/base_dimen_24dp"
+        android:layout_height="@dimen/base_dimen_24dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/base_dimen_8dp"
+        android:src="@drawable/multi_photo_picker_item_indicator"/>
+
+</com.kyletung.androiddailyrecord.views.RectLayout>
