@@ -1,7 +1,7 @@
 package com.kyletung.androiddailyrecord.module.views;
 
 import com.kyletung.androiddailyrecord.R;
-import com.kyletung.androiddailyrecord.base.ui.BaseActivity;
+import com.kyletung.androiddailyrecord.base.BaseActivity;
 
 /**
  * All rights reserved by Author<br>

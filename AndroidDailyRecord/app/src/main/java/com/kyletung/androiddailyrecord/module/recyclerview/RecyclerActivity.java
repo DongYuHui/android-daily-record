@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.kyletung.androiddailyrecord.R;
-import com.kyletung.androiddailyrecord.base.ui.BaseActivity;
+import com.kyletung.androiddailyrecord.base.BaseActivity;
 
 /**
  * All rights reserved by Author<br>

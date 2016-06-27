@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.kyletung.androiddailyrecord.R;
-import com.kyletung.androiddailyrecord.base.ui.BaseDialogFragment;
+import com.kyletung.androiddailyrecord.base.BaseDialogFragment;
 
 /**
  * All rights reserved by Author<br>

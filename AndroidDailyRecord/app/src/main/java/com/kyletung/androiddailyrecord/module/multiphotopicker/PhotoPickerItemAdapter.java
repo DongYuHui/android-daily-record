@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.kyletung.androiddailyrecord.R;
+import com.kyletung.androiddailyrecord.utils.ImageLoader;
 import com.kyletung.androiddailyrecord.views.RectLayout;
 import com.kyletung.androiddailyrecord.views.recycler.BaseRecyclerAdapter;
 
@@ -69,7 +69,7 @@ public class PhotoPickerItemAdapter extends BaseRecyclerAdapter<PhotoModel, Phot
 
     @Override
     public void onBindDataViewHolder(PhotoViewHolder holder, final int position) {
-        Glide.with(mContext).load(mListData.get(position).getPhotoPath()).into(holder.mImage);
+        ImageLoader.load(mContext, holder.mImage, mListData.get(position).getPhotoPath());
         if (mListData.get(position).isSelected()) {
             // 该图已经被用户选择了
             holder.mImageMask.setVisibility(View.VISIBLE);

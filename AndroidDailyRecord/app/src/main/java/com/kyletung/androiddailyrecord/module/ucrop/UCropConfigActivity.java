@@ -21,7 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kyletung.androiddailyrecord.R;
-import com.kyletung.androiddailyrecord.base.ui.BaseActivity;
+import com.kyletung.androiddailyrecord.base.BaseActivity;
 import com.kyletung.ucrop.UCrop;
 import com.kyletung.ucrop.UCropActivity;
 

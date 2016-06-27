@@ -1,4 +1,4 @@
-package com.kyletung.androiddailyrecord.main.adapter;
+package com.kyletung.androiddailyrecord.main;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.kyletung.androiddailyrecord.R;
 import com.kyletung.androiddailyrecord.views.recycler.BaseRecyclerAdapter;
-import com.kyletung.androiddailyrecord.main.model.MainModel;
 
 /**
  * All rights reserved by Author<br>

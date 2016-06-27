@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.kyletung.androiddailyrecord.R;
-import com.kyletung.androiddailyrecord.base.ui.BaseActivity;
+import com.kyletung.androiddailyrecord.base.BaseActivity;
 
 import java.io.File;
 import java.io.FileInputStream;

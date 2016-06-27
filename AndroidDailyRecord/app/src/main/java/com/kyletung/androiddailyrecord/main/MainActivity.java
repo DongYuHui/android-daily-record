@@ -1,21 +1,22 @@
-package com.kyletung.androiddailyrecord.main.ui;
+package com.kyletung.androiddailyrecord.main;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.kyletung.androiddailyrecord.R;
-import com.kyletung.androiddailyrecord.base.ui.BaseActivity;
-import com.kyletung.androiddailyrecord.main.adapter.MainAdapter;
-import com.kyletung.androiddailyrecord.main.model.MainModel;
+import com.kyletung.androiddailyrecord.base.BaseActivity;
 import com.kyletung.androiddailyrecord.module.multiphotopicker.PhotoPickerActivity;
 import com.kyletung.androiddailyrecord.module.nineimageview.NineImageActivity;
-import com.kyletung.androiddailyrecord.module.ucrop.UCropConfigActivity;
-import com.kyletung.androiddailyrecord.module.views.ViewsActivity;
 import com.kyletung.androiddailyrecord.module.rectlayout.RectLayoutActivity;
 import com.kyletung.androiddailyrecord.module.recyclerview.RecyclerActivity;
-import com.kyletung.androiddailyrecord.utils.BaseLog;
+import com.kyletung.androiddailyrecord.module.ucrop.UCropConfigActivity;
+import com.kyletung.androiddailyrecord.module.views.ViewsActivity;
+import com.kyletung.androiddailyrecord.utils.BaseToast;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,8 @@ import java.util.ArrayList;
 public class MainActivity extends BaseActivity implements MainAdapter.OnItemClickListener {
 
     private static final String TAG = "MainActivity";
+
+    private static final int REQUEST_PERMISSION = 77;
 
     private static final String[] items = {
             "RectLayout 矩形布局",
@@ -47,7 +50,9 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnItemClic
 
     @Override
     protected void initView() {
+        // init tool bar
         initToolbar("Main", false);
+        // init views
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
         MainAdapter adapter = new MainAdapter(this, R.layout.main_recycler_item);
         adapter.setOnItemClickListener(this);
@@ -86,12 +91,33 @@ public class MainActivity extends BaseActivity implements MainAdapter.OnItemClic
                 startActivity(intentNineImage);
                 break;
             case 5:
-                BaseLog.d(TAG, "Multi Photo Picker Activity");
-                Intent intentPhotoPicker = new Intent(this, PhotoPickerActivity.class);
-                intentPhotoPicker.putExtra(PhotoPickerActivity.MAX_COUNT, 6);
-                startActivity(intentPhotoPicker);
+                if (checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    Intent intentPhotoPicker = new Intent(this, PhotoPickerActivity.class);
+                    intentPhotoPicker.putExtra(PhotoPickerActivity.MAX_COUNT, 6);
+                    startActivity(intentPhotoPicker);
+                } else {
+                    requestPermission(
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                            getString(R.string.photo_picker_permission_hint),
+                            REQUEST_PERMISSION
+                    );
+                }
                 break;
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_PERMISSION:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent intentPhotoPicker = new Intent(this, PhotoPickerActivity.class);
+                    intentPhotoPicker.putExtra(PhotoPickerActivity.MAX_COUNT, 6);
+                    startActivity(intentPhotoPicker);
+                } else {
+                    BaseToast.makeText(this, "The application can't work without permission.");
+                }
+                break;
+        }
+    }
 }

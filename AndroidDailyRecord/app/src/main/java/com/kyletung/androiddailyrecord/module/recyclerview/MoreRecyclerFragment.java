@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.kyletung.androiddailyrecord.R;
 import com.kyletung.androiddailyrecord.views.recycler.LinearOnScrollListener;
-import com.kyletung.androiddailyrecord.base.ui.BaseFragment;
+import com.kyletung.androiddailyrecord.base.BaseFragment;
 
 import java.util.ArrayList;
 

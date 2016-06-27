@@ -1,4 +1,4 @@
-package com.kyletung.androiddailyrecord.base.ui;
+package com.kyletung.androiddailyrecord.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

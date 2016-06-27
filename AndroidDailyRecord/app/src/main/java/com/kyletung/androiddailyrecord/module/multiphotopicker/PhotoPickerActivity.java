@@ -23,7 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kyletung.androiddailyrecord.R;
-import com.kyletung.androiddailyrecord.base.ui.BaseActivity;
+import com.kyletung.androiddailyrecord.base.BaseActivity;
 import com.kyletung.androiddailyrecord.views.recycler.LinearItemDecoration;
 
 import java.io.File;

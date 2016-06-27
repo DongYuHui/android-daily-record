@@ -12,6 +12,9 @@
     <!-- UCrop -->
     <string name="ucrop_introduce">UCrop 是一个非常强大的图片裁剪库，可配置性强，体验出众。感谢 UCrop 团队能带来如此杰出的工具，在这里向他们表示十二分的敬意。这里只集成了其 Demo 的功能，详细情况可查阅：https://github.com/Yalantis/uCrop</string>
 
+    <!--Photo Picker-->
+    <string name="photo_picker_permission_hint">This application needs to read storage card to get photos in the phone.</string>
+
     <string name="label_sample">sample</string>
     <string name="label_aspect_ratio">Aspect ratio</string>
     <string name="label_dynamic">Dynamic</string>

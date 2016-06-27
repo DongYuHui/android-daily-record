@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.kyletung.androiddailyrecord.R;
-import com.kyletung.androiddailyrecord.base.ui.BaseFragment;
+import com.kyletung.androiddailyrecord.base.BaseFragment;
 import com.kyletung.androiddailyrecord.utils.BaseToast;
 import com.kyletung.androiddailyrecord.views.MoreScrollView;
 

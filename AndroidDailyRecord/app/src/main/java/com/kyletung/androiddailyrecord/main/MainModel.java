@@ -1,4 +1,4 @@
-package com.kyletung.androiddailyrecord.main.model;
+package com.kyletung.androiddailyrecord.main;
 
 /**
  * All rights reserved by Author<br>

@@ -22,7 +22,7 @@
 //　 　　 　　　　　　┗┻┛ ┗┻┛+ + + +
 //
 
-package com.kyletung.androiddailyrecord.base.ui;
+package com.kyletung.androiddailyrecord.base;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;

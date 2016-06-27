@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.kyletung.androiddailyrecord.R;
+import com.kyletung.androiddailyrecord.utils.ImageLoader;
 import com.kyletung.androiddailyrecord.views.recycler.BaseRecyclerAdapter;
 
 /**
@@ -43,7 +43,7 @@ public class PhotoFolderItemAdapter extends BaseRecyclerAdapter<PhotoFolder, Pho
     public void onBindDataViewHolder(FolderViewHolder holder, final int position) {
         holder.mFolderName.setText(mListData.get(position).getFolderName());
         holder.mFolderSize.setText(mListData.get(position).getPhotoList().size() + "张");
-        Glide.with(mContext).load(mListData.get(position).getPhotoList().get(0).getPhotoPath()).into(holder.mFolderImage);
+        ImageLoader.load(mContext, holder.mFolderImage, mListData.get(position).getPhotoList().get(0).getPhotoPath());
         if (position == mCurrentFolder) {
             holder.mFolderState.setVisibility(View.VISIBLE);
         } else {

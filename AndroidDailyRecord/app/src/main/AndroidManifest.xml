@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
 
         <!--Main-->
-        <activity android:name=".main.ui.MainActivity">
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
