@@ -9,6 +9,8 @@
 1. DiaplayUtil：用于屏幕单位之间的转化（dp、px、sp）
 2. EncodeUtil：用于对字符串进行一些编码转化（MD5）
 3. ImageLoader：将 Glide 包装了一层，易于维护修改
+4. HttpUtil：通过封装 OkHttp 实现简单的网络请求（同步的 GET POST 方法，异步的 GET POST 方法）
+5. JsonUtil：通过封装 Gson 库实现一些字符串到实体类的转化
 
 ### 矩形布局 ###
 

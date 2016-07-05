@@ -23,21 +23,18 @@ android {
 }
 
 dependencies {
-
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
     testCompile 'junit:junit:4.12'
-    // support v7
-    compile 'com.android.support:appcompat-v7:24.0.0'
-    // recycler view
-    compile 'com.android.support:recyclerview-v7:24.0.0'
-    // card view
-    compile 'com.android.support:cardview-v7:24.0.0'
-    // material design
     compile 'com.android.support:design:24.0.0'
+    compile 'com.android.support:cardview-v7:24.0.0'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.android.support:recyclerview-v7:24.0.0'
     // UCrop
     compile project(':ucrop')
+    // GSon
+    compile 'com.google.code.gson:gson:2.7'
+    // OkHttp
+    compile 'com.squareup.okhttp3:okhttp:3.3.1'
     // Glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
-
 }
