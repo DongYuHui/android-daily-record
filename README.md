@@ -11,7 +11,7 @@
 3. ImageLoader：将 Glide 包装了一层，易于维护修改
 4. HttpUtil：通过封装 OkHttp 实现简单的网络请求（同步的 GET POST 方法，异步的 GET POST 方法）
 5. JsonUtil：通过封装 Gson 库实现一些字符串到实体类的转化
-6. VersionUtil：用于获取当前应用的版本号
+6. AppInfoUtil：用于获取当前手机的一些信息的工具类
 
 ### 矩形布局 ###
 
