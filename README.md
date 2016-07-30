@@ -12,6 +12,7 @@
 4. HttpUtil：通过封装 OkHttp 实现简单的网络请求（同步的 GET POST 方法，异步的 GET POST 方法）
 5. JsonUtil：通过封装 Gson 库实现一些字符串到实体类的转化
 6. AppInfoUtil：用于获取当前手机的一些信息的工具类
+7. UriUtil：用于将 Uri 转换成 String 路径的工具类
 
 ### 矩形布局 ###
 
