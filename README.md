@@ -14,6 +14,7 @@
 6. AppInfoUtil：用于获取当前手机的一些信息的工具类
 7. UriUtil：用于将 Uri 转换成 String 路径的工具类
 8. PermissionUtil：用于权限处理
+9. PinyinUtil：拼音处理工具类，用于提取字符串的首字母
 
 ### 矩形布局 ###
 
