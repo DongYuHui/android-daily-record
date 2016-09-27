@@ -50,4 +50,8 @@
     <string name="toast_cannot_retrieve_cropped_image">Cannot retrieve cropped image</string>
     <string name="toast_unexpected_error">Unexpected error</string>
 
+    <!-- BaseDialog -->
+    <string name="dialog_action_positive">Confirm</string>
+    <string name="dialog_action_negative">Cancel</string>
+
 </resources>

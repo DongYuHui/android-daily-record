@@ -15,6 +15,7 @@
 7. UriUtil：用于将 Uri 转换成 String 路径的工具类
 8. PermissionUtil：用于权限处理
 9. PinyinUtil：拼音处理工具类，用于提取字符串的首字母
+10. BaseDialog：对系统对话框的基本封装，简化使用
 
 ### 矩形布局 ###
 
