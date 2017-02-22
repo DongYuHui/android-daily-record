@@ -32,7 +32,7 @@ public class BitmapUtil {
     }
 
     /**
-     * 压缩图片
+     * 保存图片
      *
      * @param bitmap   Bitmap
      * @param filePath 保存的路径
