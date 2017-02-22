@@ -13,7 +13,7 @@ import com.kyletung.androiddailyrecord.R;
  * Created by DongYuHui on 2016/9/27.
  * 对于系统对话框的一些简单封装
  */
-
+@Deprecated
 public class BaseDialog {
 
     private static String ACTION_NAME_POSITIVE;
@@ -36,8 +36,19 @@ public class BaseDialog {
      * @param context 上下文
      * @return 返回当前实例
      */
-    public BaseDialog create(Context context) {
+    public static BaseDialog create(Context context) {
         return new BaseDialog(context);
+    }
+
+    /**
+     * 设置是否可以被取消
+     *
+     * @param cancelable 是否可以取消
+     * @return 返回当前实例
+     */
+    public BaseDialog setCancelable(boolean cancelable) {
+        mBuilder.setCancelable(cancelable);
+        return this;
     }
 
     /**
@@ -140,7 +151,7 @@ public class BaseDialog {
      * @param onSingleClickListener 点击监听
      * @return 返回当前实例
      */
-    public BaseDialog setSingleChioce(final String[] list, int checkedPosition, final OnSingleClickListener onSingleClickListener) {
+    public BaseDialog setSingleChoice(final String[] list, int checkedPosition, final OnSingleClickListener onSingleClickListener) {
         mBuilder.setSingleChoiceItems(list, checkedPosition, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

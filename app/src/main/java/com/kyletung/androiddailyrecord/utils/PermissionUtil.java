@@ -1,16 +1,11 @@
 package com.kyletung.androiddailyrecord.utils;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.PermissionChecker;
-import android.support.v7.app.AlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,147 +17,246 @@ import java.util.List;
  */
 public class PermissionUtil {
 
-    private static final String REQUEST_TITLE = "权限请求";
-    private static final String REQUEST_DEFAULT_MESSAGE = "需要您的授权";
-    private static final String REQUEST_POSITIVE_BUTTON = "确定";
+    public static final String DESC_TITLE = "权限提示";
 
-    private int mTargetApi;
-    private Callback mCallback;
+    private static final int REQUEST_CODE = 777; // 默认请求码
 
-    public PermissionUtil(Context context, Callback callback) {
-        this.mCallback = callback;
-        try {
-            PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-            mTargetApi = info.applicationInfo.targetSdkVersion;
-        } catch (PackageManager.NameNotFoundException e) {
-            mTargetApi = 0;
-        }
-    }
+    private Activity mActivity;
+
+    private OnGrantedListener mOnGrantedListener;               // 用户授权的回调接口
+    private OnDeniedForeverListener mOnDeniedForeverListener;   // 用户用于拒绝的回调接口
+    private OnDeniedListener mOnDeniedListener;                 // 用户拒绝的回调接口
 
     /**
-     * 检查权限
+     * 请求单个权限
      *
-     * @param context    上下文
-     * @param permission 需要检查的权限
-     * @return 返回是否已经授权
+     * @param activity   Activity
+     * @param permission 权限
+     * @param rationale  提示
      */
-    public boolean isPermissionGranted(Context context, String permission) {
-        // For Android < Android M, self permissions are always granted.
-        boolean result = true;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (mTargetApi >= Build.VERSION_CODES.M) {
-                // targetSdkVersion >= Android M, we can use Context#checkSelfPermission
-                result = context.checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
-            } else {
-                // targetSdkVersion < Android M, we have to use PermissionChecker
-                result = PermissionChecker.checkSelfPermission(context, permission) == PermissionChecker.PERMISSION_GRANTED;
-            }
-        }
-        return result;
-    }
-
-    /**
-     * 检查权限
-     *
-     * @param context     上下文
-     * @param permissions 需要检查的权限组
-     * @return 返回有权限的权限组
-     */
-    public String[] isPermissionsGranted(Context context, String[] permissions) {
-        List<String> results = new ArrayList<>();
-        for (String permission : permissions) {
-            if (isPermissionGranted(context, permission)) results.add(permission);
-        }
-        String[] permissionResults = new String[results.size()];
-        for (String permission : results) {
-            permissionResults[results.indexOf(permission)] = permission;
-        }
-        return permissionResults;
-    }
-
-    /**
-     * 检查权限并申请
-     *
-     * @param activity    Activity
-     * @param permission  权限
-     * @param requestCode 请求码
-     * @param message     提示内容
-     */
-    public void checkPermission(final Activity activity, final String permission, final int requestCode, @Nullable String message) {
-        if (!isPermissionGranted(activity, permission)) {
+    public void checkPermission(final Activity activity, final String permission, String rationale) {
+        if (PermissionChecker.checkSelfPermission(activity, permission) != PackageManager.PERMISSION_GRANTED) {
+            mActivity = activity;
             if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                builder.setTitle(REQUEST_TITLE);
-                builder.setMessage(message == null ? REQUEST_DEFAULT_MESSAGE : message);
-                builder.setPositiveButton(REQUEST_POSITIVE_BUTTON, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        ActivityCompat.requestPermissions(activity, new String[]{permission}, requestCode);
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.setCancelable(false);
-                dialog.show();
+                BaseDialog.create(activity)
+                        .setTitle(DESC_TITLE)
+                        .setContent(rationale)
+                        .setPositive(new BaseDialog.OnClickListener() {
+                            @Override
+                            public void onClick(BaseDialog dialog) {
+                                ActivityCompat.requestPermissions(mActivity, new String[]{permission}, REQUEST_CODE);
+                            }
+                        })
+                        .show();
             } else {
-                ActivityCompat.requestPermissions(activity, new String[]{permission}, requestCode);
+                ActivityCompat.requestPermissions(activity, new String[]{permission}, REQUEST_CODE);
             }
         } else {
-            if (mCallback != null) mCallback.onCall(requestCode, new String[]{permission});
+            if (mOnGrantedListener != null) mOnGrantedListener.onGranted();
         }
     }
 
     /**
-     * 检查权限
+     * 请求单个权限
+     *
+     * @param fragment   Fragment
+     * @param permission 权限
+     * @param rationale  提示
+     */
+    public void checkPermission(final Fragment fragment, final String permission, String rationale) {
+        if (PermissionChecker.checkSelfPermission(fragment.getActivity(), permission) != PackageManager.PERMISSION_GRANTED) {
+            mActivity = fragment.getActivity();
+            if (ActivityCompat.shouldShowRequestPermissionRationale(mActivity, permission)) {
+                BaseDialog.create(mActivity)
+                        .setTitle(DESC_TITLE)
+                        .setContent(rationale)
+                        .setPositive(new BaseDialog.OnClickListener() {
+                            @Override
+                            public void onClick(BaseDialog dialog) {
+                                fragment.requestPermissions(new String[]{permission}, REQUEST_CODE);
+                            }
+                        })
+                        .show();
+            } else {
+                fragment.requestPermissions(new String[]{permission}, REQUEST_CODE);
+            }
+        } else {
+            if (mOnGrantedListener != null) mOnGrantedListener.onGranted();
+        }
+    }
+
+    /**
+     * 请求一组权限
      *
      * @param activity    Activity
      * @param permissions 权限组
-     * @param requestCode 请求码
+     * @param rationale   提示
      */
-    public void checkPermissions(Activity activity, String[] permissions, int requestCode) {
-        String[] permissionsDenied = isPermissionsGranted(activity, permissions);
-        if (permissionsDenied.length > 0) {
-            ActivityCompat.requestPermissions(activity, permissions, requestCode);
+    public void checkPermissions(final Activity activity, String[] permissions, String rationale) {
+        List<String> permissionNot = new ArrayList<>();
+        for (String permission : permissions) {
+            if (PermissionChecker.checkSelfPermission(activity, permission) != PackageManager.PERMISSION_GRANTED) {
+                permissionNot.add(permission);
+            }
+        }
+        if (permissionNot.size() == 0) {
+            if (mOnGrantedListener != null) mOnGrantedListener.onGranted();
+            return;
+        }
+        mActivity = activity;
+        boolean shouldShowDialog = false;
+        for (String permission : permissionNot) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
+                shouldShowDialog = true;
+                break;
+            }
+        }
+        final String[] permissionRequest = new String[permissionNot.size()];
+        for (int i = 0; i < permissionNot.size(); i++) {
+            permissionRequest[i] = permissionNot.get(i);
+        }
+        if (shouldShowDialog) {
+            BaseDialog.create(activity)
+                    .setTitle(DESC_TITLE)
+                    .setContent(rationale)
+                    .setPositive(new BaseDialog.OnClickListener() {
+                        @Override
+                        public void onClick(BaseDialog dialog) {
+                            ActivityCompat.requestPermissions(mActivity, permissionRequest, REQUEST_CODE);
+                        }
+                    })
+                    .show();
         } else {
-            if (mCallback != null) mCallback.onCall(requestCode, permissions);
+            ActivityCompat.requestPermissions(activity, permissionRequest, REQUEST_CODE);
         }
     }
 
     /**
-     * 处理权限请求回调结果
+     * 请求一组权限
+     *
+     * @param fragment    Fragment
+     * @param permissions 权限组
+     * @param rationale   提示
+     */
+    public void checkPermissions(final Fragment fragment, String[] permissions, String rationale) {
+        List<String> permissionNot = new ArrayList<>();
+        for (String permission : permissions) {
+            if (PermissionChecker.checkSelfPermission(fragment.getActivity(), permission) != PackageManager.PERMISSION_GRANTED) {
+                permissionNot.add(permission);
+            }
+        }
+        if (permissionNot.size() == 0) {
+            if (mOnGrantedListener != null) mOnGrantedListener.onGranted();
+            return;
+        }
+        mActivity = fragment.getActivity();
+        boolean shouldShowDialog = false;
+        for (String permission : permissionNot) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(mActivity, permission)) {
+                shouldShowDialog = true;
+                break;
+            }
+        }
+        final String[] permissionRequest = new String[permissionNot.size()];
+        for (int i = 0; i < permissionNot.size(); i++) {
+            permissionRequest[i] = permissionNot.get(i);
+        }
+        if (shouldShowDialog) {
+            BaseDialog.create(mActivity)
+                    .setTitle(DESC_TITLE)
+                    .setContent(rationale)
+                    .setPositive(new BaseDialog.OnClickListener() {
+                        @Override
+                        public void onClick(BaseDialog dialog) {
+                            fragment.requestPermissions(permissionRequest, REQUEST_CODE);
+                        }
+                    })
+                    .show();
+        } else {
+            fragment.requestPermissions(permissionRequest, REQUEST_CODE);
+        }
+    }
+
+    /**
+     * 请求的结果回调
      *
      * @param requestCode  请求码
      * @param permissions  请求的权限
-     * @param grantResults 授权结果
+     * @param grantResults 请求的权限相对应的结果
      */
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (grantResults.length <= 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-            return;
+        if (requestCode != REQUEST_CODE) return;
+        boolean allowedAll = true;
+        for (int result : grantResults) {
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                allowedAll = false;
+                break;
+            }
         }
-        if (mCallback != null) {
-            List<String> permissionResults = new ArrayList<>();
-            for (int i = 0; i < grantResults.length; i++) {
-                if (PackageManager.PERMISSION_GRANTED == grantResults[i])
-                    permissionResults.add(permissions[i]);
+        if (allowedAll) {
+            if (mOnGrantedListener != null) mOnGrantedListener.onGranted();
+        } else {
+            boolean shouldShow = false;
+            for (String permission : permissions) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(mActivity, permission)) {
+                    shouldShow = true;
+                    break;
+                }
             }
-            String[] grantPermissions = new String[permissionResults.size()];
-            for (String permission : permissionResults) {
-                grantPermissions[permissionResults.indexOf(permission)] = permission;
+            if (shouldShow) {
+                if (mOnDeniedListener != null) mOnDeniedListener.onDenied();
+            } else {
+                if (mOnDeniedForeverListener != null) mOnDeniedForeverListener.onDeniedForever();
             }
-            mCallback.onCall(requestCode, grantPermissions);
         }
     }
 
     /**
-     * 权限请求回调接口
+     * 设置用户授权的回调接口
+     *
+     * @param onGrantedListener 接口实现
      */
-    public interface Callback {
-        /**
-         * 请求成功结果
-         *
-         * @param requestCode  请求码
-         * @param grantResults 授权的权限
-         */
-        void onCall(int requestCode, String[] grantResults);
+    public void setOnGrantedListener(OnGrantedListener onGrantedListener) {
+        mOnGrantedListener = onGrantedListener;
+    }
+
+    /**
+     * 设置用户拒绝并不再提示的回调接口
+     *
+     * @param onDeniedForeverListener 接口实现
+     */
+    public void setOnDeniedForeverListener(OnDeniedForeverListener onDeniedForeverListener) {
+        mOnDeniedForeverListener = onDeniedForeverListener;
+    }
+
+    /**
+     * 设置用户拒绝的回调接口
+     *
+     * @param onDeniedListener 接口实现
+     */
+    public void setOnDeniedListener(OnDeniedListener onDeniedListener) {
+        mOnDeniedListener = onDeniedListener;
+    }
+
+    /**
+     * 用户授权的回调接口
+     */
+    public interface OnGrantedListener {
+        void onGranted();
+    }
+
+    /**
+     * 用户拒绝并勾选‘不在提示’的回调接口
+     */
+    public interface OnDeniedForeverListener {
+        void onDeniedForever();
+    }
+
+    /**
+     * 用户拒绝的回调接口
+     */
+    public interface OnDeniedListener {
+        void onDenied();
     }
 
 }
